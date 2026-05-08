@@ -1,0 +1,252 @@
+// ── Global reset ──────────────────────────────────────────────
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #f3f4f6;
+  margin: 0;
+  padding: 2rem;
+  color: #111827;
+}
+
+// ── Widget loader ─────────────────────────────────────────────
+.wg-loader {
+  color: #6b7280;
+  font-size: 0.9rem;
+  animation: wg-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes wg-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+// ── Reactive Form ─────────────────────────────────────────────
+$form-radius: 10px;
+$form-border: #e5e7eb;
+$form-bg: #ffffff;
+$label-color: #374151;
+$input-border: #d1d5db;
+$input-focus: #3b82f6;
+$error-color: #ef4444;
+$success-color: #16a34a;
+
+.rw-form {
+  background: $form-bg;
+  border: 1px solid $form-border;
+  border-radius: $form-radius;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+  max-width: 480px;
+  overflow: hidden;
+
+  &__header {
+    padding: 1.125rem 1.5rem;
+    background: #f9fafb;
+    border-bottom: 1px solid $form-border;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+  }
+
+  &__body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.125rem;
+  }
+
+  &__footer {
+    padding: 1rem 1.5rem;
+    background: #f9fafb;
+    border-top: 1px solid $form-border;
+    display: flex;
+    gap: 0.625rem;
+    justify-content: flex-end;
+  }
+
+  &__success {
+    margin: 0;
+    padding: 0.625rem 1.5rem;
+    background: #dcfce7;
+    color: $success-color;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-top: 1px solid #bbf7d0;
+  }
+}
+
+// ── Field ─────────────────────────────────────────────────────
+.rw-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+
+  &__label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $label-color;
+  }
+
+  &__required {
+    color: $error-color;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+    border: 1.5px solid $input-border;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    background: #fff;
+    color: #111827;
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+
+    &:focus {
+      border-color: $input-focus;
+      box-shadow: 0 0 0 3px rgba($input-focus, 0.15);
+    }
+  }
+
+  &__error {
+    font-size: 0.78rem;
+    color: $error-color;
+    min-height: 1rem;
+  }
+
+  &--invalid .rw-field__input {
+    border-color: $error-color;
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($error-color, 0.15);
+    }
+  }
+}
+
+// ── Switch (segmented control) ────────────────────────────────
+.rw-switch {
+  display: inline-flex;
+  border: 1.5px solid $input-border;
+  border-radius: 6px;
+  overflow: hidden;
+  width: fit-content;
+
+  &__option {
+    padding: 0.45rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background: #fff;
+    color: #4b5563;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+
+    & + & {
+      border-left: 1.5px solid $input-border;
+    }
+
+    &:hover:not(.rw-switch__option--active) {
+      background: #f3f4f6;
+    }
+
+    &--active {
+      background: $input-focus;
+      color: #fff;
+    }
+  }
+}
+
+.rw-field--invalid .rw-switch {
+  border-color: $error-color;
+}
+
+// ── Buttons ───────────────────────────────────────────────────
+$btn-primary: #3b82f6;
+$btn-primary-hover: #2563eb;
+$btn-secondary: #6b7280;
+$btn-secondary-hover: #4b5563;
+$btn-danger: #ef4444;
+$btn-danger-hover: #dc2626;
+$btn-radius: 6px;
+$btn-font-size: 0.875rem;
+$btn-padding: 0.5rem 1rem;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $btn-padding;
+  font-size: $btn-font-size;
+  font-weight: 500;
+  border: none;
+  border-radius: $btn-radius;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+  text-decoration: none;
+  line-height: 1.5;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &--primary {
+    background-color: $btn-primary;
+    color: #fff;
+
+    &:hover:not(:disabled) {
+      background-color: $btn-primary-hover;
+    }
+  }
+
+  &--secondary {
+    background-color: $btn-secondary;
+    color: #fff;
+
+    &:hover:not(:disabled) {
+      background-color: $btn-secondary-hover;
+    }
+  }
+
+  &--danger {
+    background-color: $btn-danger;
+    color: #fff;
+
+    &:hover:not(:disabled) {
+      background-color: $btn-danger-hover;
+    }
+  }
+
+  &--outline {
+    background-color: transparent;
+    color: $btn-primary;
+    border: 1.5px solid $btn-primary;
+
+    &:hover:not(:disabled) {
+      background-color: $btn-primary;
+      color: #fff;
+    }
+  }
+
+  &--sm {
+    padding: 0.25rem 0.625rem;
+    font-size: 0.75rem;
+  }
+
+  &--lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+}

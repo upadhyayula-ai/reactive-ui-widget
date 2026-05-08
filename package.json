@@ -1,0 +1,28 @@
+{
+  "name": "reactive-ui-widget",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/upadhyayula-ai/reactive-ui-widget.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/upadhyayula-ai/reactive-ui-widget/issues"
+  },
+  "homepage": "https://github.com/upadhyayula-ai/reactive-ui-widget#readme",
+  "devDependencies": {
+    "sass": "^1.99.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.11"
+  }
+}
